@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  viewPortConfig: {
+    medium: 500,
+    large: 1000
+  }
 };
