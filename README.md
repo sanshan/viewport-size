@@ -1,27 +1,22 @@
-# ViewportSize
+# #2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+создать структурную директиву ifViewportSize, которая рендерит элемент, если ширина окна браузера соответствует переданному значения. Ширина браузера может изменяться после запуска приложения.
 
-## Development server
+сервис, который занимается определением текущей ширины окна браузера и должен получать на этапе инициализации конфиг с пороговыми значениями для разных типов ширины (нижнее значение, с которого начинается соответствующий тип)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+конфиг для сервиса должен передаваться через AppModule
 
-## Code scaffolding
+Обратить внимание на производительность (на странице могут быть сотни произвольных компонентов)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+interface IConfig {
+  medium: number;
+  large: number;
+}
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+small: viewportWidth < config.medium
+medium: config.medium <= viewportWidth < config.large
+large: config.large <= viewportWidth
+```
